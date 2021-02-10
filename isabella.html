@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .hide {
+        color: rgba(8, 8, 8, 0.164);
+      }
+      .user {
+        border: 1px solid black;
+      }
+    </style>
+    <title>Assignment week 6</title>
+  </head>
+  <body>
+    <section>
+      <h1>WEEK 6</h1>
+      <article id="users">
+        <div class="user">
+          <p class="user_firstname">A</p>
+          <!--  Første parameter i kaldet til show_or_hide() er klassen for det element som knappen skal hide (lige ovenover dette)
+                sidste parameter er præcis den knap som du har klikket på (this) -->
+          <button class="button_firstname" onclick="hide_or_show('user_firstname', this)">Hide/show</button>
+          <p class="user_lastname">AA</p>
+          <button class="button_firstname" onclick="hide_or_show('user_lastname', this)">Hide/show</button>
+          <p class="user_email">aa@aa.aa</p>
+          <button class="button_firstname" onclick="hide_or_show('user_email', this)">Hide/show</button>
+        </div>
+
+        <div class="user">
+          <p class="user_firstname">B</p>
+          <button class="button_firstname" onclick="hide_or_show('user_firstname', this)">Hide/show</button>
+          <p class="user_lastname">BB</p>
+          <button class="button_firstname" onclick="hide_or_show('user_lastname', this)">Hide/show</button>
+          <p class="user_email">bb@bb.bb</p>
+          <button class="button_firstname" onclick="hide_or_show('user_email', this)">Hide/show</button>
+        </div>
+
+        <div class="user">
+          <p class="user_firstname">C</p>
+          <button class="button_firstname" onclick="hide_or_show('user_firstname', this)">Hide/show</button>
+          <p class="user_lastname">CC</p>
+          <button class="button_firstname" onclick="hide_or_show('user_lastname', this)">Hide/show</button>
+          <p class="user_email">cc@cc.cc</p>
+          <button class="button_firstname" onclick="hide_or_show('user_email', this)">Hide/show</button>
+        </div>
+      </article>
+    </section>
+    <script>
+      //targeted_element er klassen for det element som knappen skal hide
+      //cicked_button er præcis den knap som du har klikket på (this)
+      function hide_or_show(targeted_element, clicked_button) {
+        console.log("click");
+        //parentNode går et niveau op til den overliggende parent, og peger derefter ned på den klasse der er vlagt.
+        //På denne måde er du sikker på at ramme det element som er i den samme user som knappen du klikkede på
+        const user_firstname = clicked_button.parentNode.querySelector(".user_firstname");
+        const user_lastname = clicked_button.parentNode.querySelector(".user_lastname");
+        const user_email = clicked_button.parentNode.querySelector(".user_email");
+        const changing_element = clicked_button.parentNode.querySelector("." + targeted_element);
+
+        //Hvis der ikke er klassen hide på nogen af elementerne i den user du har klikket på en knap ved
+        if (
+          !user_firstname.classList.contains("hide") &&
+          !user_lastname.classList.contains("hide") &&
+          !user_email.classList.contains("hide")
+        ) {
+          //Så sæt en hide på det element du vil ændre
+          changing_element.classList.add("hide");
+          //Hvis det element du vil ændre allerede har en hide på
+        } else if (changing_element.classList.contains("hide")) {
+          //så fjern hide
+          changing_element.classList.remove("hide");
+        }
+        //Hvis ingen af ovenstående er opfyldt, så gør intet (her fx. hvis der er en hide på et af elementerne, og du vil ændre et andet element.)
+      }
+    </script>
+  </body>
+</html>
